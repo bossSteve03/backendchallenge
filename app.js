@@ -1,7 +1,14 @@
-require('dotenv').config();
-const app = require('./index.js');
-const port = process.env.PORT;
+const express = require("express");
+const app = express();
 
-app.listen(port, () => {
-    console.log(`App is now up and running, ready to listen on port ${port}`)
+app.use(express.json());
+
+app.use((req, res, next) => {
+    console.log(req.protocol);
+    console.log(req.originalUrl);
+    res.send();
+    next();
 })
+
+
+module.exports = app
